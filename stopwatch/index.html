@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Tick - High Precision Timer</title>
+    <meta name="description" content="Nano Tick application with lap timing, high precision, and beautiful design">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title-section">
+                <svg class="timer-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12,6 12,12 16,14"/>
+                </svg>
+                <h1>Nano Tick</h1>
+            </div>
+            <p class="subtitle">High-precision timing with lap tracking</p>
+        </div>
+
+        <!-- Main Stopwatch Display -->
+        <div class="stopwatch-card">
+            <div class="display-section">
+                <div class="time-display" id="timeDisplay">00:00.00</div>
+                <div class="instructions">
+                    Press Space to start/stop • L for lap • Ctrl+R to reset
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="controls">
+                <button id="startStopBtn" class="btn btn-start">
+                    <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5,3 19,12 5,21"/>
+                    </svg>
+                    Start
+                </button>
+
+                <button id="lapBtn" class="btn btn-lap" disabled>
+                    <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/>
+                        <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/>
+                        <path d="M4 22h16"/>
+                        <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/>
+                        <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/>
+                        <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>
+                    </svg>
+                    Lap
+                </button>
+
+                <button id="resetBtn" class="btn btn-reset">
+                    <svg class="btn-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
+                    Reset
+                </button>
+            </div>
+        </div>
+
+        <!-- Lap Times Section -->
+        <div id="lapTimesSection" class="lap-times-card" style="display: none;">
+            <div class="lap-header">
+                <h2>Lap Times</h2>
+                <div id="lapCount" class="lap-count">Total: 0 laps</div>
+            </div>
+
+            <!-- Statistics -->
+            <div id="statsSection" class="stats-section" style="display: none;">
+                <div class="stat-card stat-best">
+                    <div class="stat-label">Best Lap</div>
+                    <div id="bestLapText" class="stat-value">-</div>
+                </div>
+                <div class="stat-card stat-worst">
+                    <div class="stat-label">Slowest Lap</div>
+                    <div id="worstLapText" class="stat-value">-</div>
+                </div>
+            </div>
+
+            <!-- Lap Times List -->
+            <div class="lap-list-container">
+                <div id="lapList" class="lap-list"></div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="footer-instructions">
+            <p>Use keyboard shortcuts for faster control: Space (Start/Stop), L (Lap), Ctrl+R (Reset)</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

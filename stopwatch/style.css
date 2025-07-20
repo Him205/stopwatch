@@ -1,0 +1,390 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #1e1b4b 0%, #7c3aed 50%, #ec4899 100%);
+    min-height: 100vh;
+    padding: 1rem;
+    color: white;
+}
+
+.container {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.timer-icon {
+    margin-right: 0.75rem;
+    color: white;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.subtitle {
+    color: #c7d2fe;
+    font-size: 1.125rem;
+}
+
+/* Stopwatch Card */
+.stopwatch-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.display-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.time-display {
+    font-family: 'Courier New', monospace;
+    font-size: 5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.time-display.running {
+    color: #4ade80;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.instructions {
+    color: #c7d2fe;
+    font-size: 1.125rem;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 1.125rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.btn-icon {
+    margin-right: 0.5rem;
+}
+
+.btn-start {
+    background: #10b981;
+    color: white;
+}
+
+.btn-start:hover:not(:disabled) {
+    background: #059669;
+}
+
+.btn-start.pause {
+    background: #ef4444;
+}
+
+.btn-start.pause:hover:not(:disabled) {
+    background: #dc2626;
+}
+
+.btn-lap {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-lap:hover:not(:disabled) {
+    background: #2563eb;
+}
+
+.btn-lap:disabled {
+    background: #6b7280;
+    color: #9ca3af;
+}
+
+.btn-reset {
+    background: #6b7280;
+    color: white;
+}
+
+.btn-reset:hover {
+    background: #4b5563;
+}
+
+/* Lap Times Card */
+.lap-times-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lap-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.lap-header h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.lap-count {
+    color: #c7d2fe;
+}
+
+/* Statistics */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid;
+}
+
+.stat-best {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.stat-worst {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.stat-best .stat-label {
+    color: #4ade80;
+}
+
+.stat-worst .stat-label {
+    color: #f87171;
+}
+
+.stat-value {
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 1.125rem;
+}
+
+/* Lap List */
+.lap-list-container {
+    max-height: 20rem;
+    overflow-y: auto;
+}
+
+.lap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.lap-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.lap-item:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.lap-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lap-item.best {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.lap-item.worst {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.lap-info {
+    display: flex;
+    align-items: center;
+}
+
+.lap-number {
+    width: 3rem;
+    height: 3rem;
+    background: #6366f1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.lap-times {
+    display: flex;
+    flex-direction: column;
+}
+
+.lap-time {
+    color: white;
+    font-family: 'Courier New', monospace;
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+.total-time {
+    color: #c7d2fe;
+    font-size: 0.875rem;
+}
+
+.lap-meta {
+    text-align: right;
+}
+
+.lap-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.lap-badge.best {
+    color: #4ade80;
+}
+
+.lap-badge.worst {
+    color: #f87171;
+}
+
+.lap-timestamp {
+    color: #c7d2fe;
+    font-size: 0.875rem;
+}
+
+/* Footer */
+.footer-instructions {
+    text-align: center;
+    margin-top: 2rem;
+    color: #c7d2fe;
+}
+
+.footer-instructions p {
+    font-size: 0.875rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .time-display {
+        font-size: 3.5rem;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+    
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .lap-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .lap-meta {
+        text-align: left;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .time-display {
+        font-size: 2.5rem;
+    }
+    
+    .stopwatch-card,
+    .lap-times-card {
+        padding: 1.5rem;
+    }
+}
